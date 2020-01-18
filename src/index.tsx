@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring, useTrail } from 'react-spring'
 
 document.addEventListener('DOMContentLoaded', () => {
   const rootEl = document.getElementById('root')
@@ -12,7 +12,9 @@ const App: React.FC = () => {
   const position = useMousePosition()
   const slowMode = useSlowMode()
 
-  const springStyles = useSpring({
+  const message = ['Hello', 'my name is', 'furuk4wa', 'Thank you!']
+
+  const springStyles = useTrail(message.length, {
     to: {
       top: position ? position.y : 0,
       left: position ? position.x : 0,
@@ -23,9 +25,11 @@ const App: React.FC = () => {
   return (
     <div>
       <div>{slowMode ? 'マウスダウン' : 'マウスアップ'}</div>
-      <animated.div style={{ position: 'absolute', ...springStyles }}>
-        Hello
-      </animated.div>
+      {springStyles.map((props, i) => (
+        <animated.div style={{ position: 'absolute', ...props }}>
+          {message[i]}
+        </animated.div>
+      ))}
     </div>
   )
 }
