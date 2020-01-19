@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { animated, useSpring, useTrail } from 'react-spring'
+import { animated, useTrail } from 'react-spring'
 
 document.addEventListener('DOMContentLoaded', () => {
   const rootEl = document.getElementById('root')
@@ -64,11 +64,11 @@ function useSlowMode() {
   const [slowMode, setSlowMode] = useState<boolean>(false)
 
   useEffect(() => {
-    function handleMouseDown(e: MouseEvent) {
+    function handleMouseDown(_: MouseEvent) {
       setSlowMode(true)
     }
 
-    function handleMouseUp(e: MouseEvent) {
+    function handleMouseUp(_: MouseEvent) {
       setSlowMode(false)
     }
 
